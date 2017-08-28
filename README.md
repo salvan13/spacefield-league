@@ -8,7 +8,7 @@ Spacefield League is a multi-player on-line team game: there are 2 teams, the ob
 - statistics and votes for each player on end-match
 - training room
 - custom rooms (new / join buttons)
-- matches from 1vs1 to 6vs6 players
+- matches from 1vs1 to 5vs5 players
 - spectator mode (if you join in a full room)
 - room chat
 - full-screen
@@ -45,11 +45,11 @@ Spacefield League is a multi-player on-line team game: there are 2 teams, the ob
 **Credits**
 - piXelize font - http://xfragg3r.deviantart.com/art/piXelize-font-78478588
 
+**Notes**
+- tested on Firefox, Chrome, Opera. Something looks a bit different, but the game-play is the same.
+
 **Build**
 - npm install
 
 **Run**
 - npm start
-
-**Notes**
-- tested on Firefox, Chrome, Opera. Something (like the shadows) looks or sounds a bit different, but the game-play is the same.
