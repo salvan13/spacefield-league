@@ -16,14 +16,14 @@ Spacefield League is a multi-player on-line team game: there are 2 teams, the ob
 - full-screen
 
 **How To Play**
-- move your vehicle with **arrows / wasd / zqsd**
+- move your vehicle with **"arrows" / "wasd" / "zqsd"**
 - touch the ball to move it
 - put the ball on the side with your color to score
-- when you are full of energy (you are bright) press **space** to charge the shot
+- when you are full of energy (you are bright) press **"space"** to charge the shot
 - after shot you lose energy, wait to recover it
-- press **enter** to chat, or just click on the input field
-- press **s** to switch team (only before the match is started and the other team is not full)
-- press **m** toggle music
+- press **"enter"** to chat, or just click on the input field
+- press **"s"** to switch team (only before the match is started and the other team is not full)
+- press **"m"** toggle music
 
 **Hints**
 - when you hit the ball you become slower
@@ -31,19 +31,19 @@ Spacefield League is a multi-player on-line team game: there are 2 teams, the ob
 - try to make team play (play with more friends is much more fun)
 
 **Vehicle Stats**
-- **energy recovery** the time needed to recover the energy required to shoot
-- **shot power** the distance covered by the ball when you shoot
-- **hit power** the distance covered by the ball when you touch it
+- **energy recovery:** the time needed to recover the energy required to shoot
+- **shot power:** the distance covered by the ball when you shoot
+- **hit power:** the distance covered by the ball when you touch it
 
 **End Match - Player Stats**
-- **goal** number of goal scored
-- **assist** number of successful pass to teammates with a subsequent goal
-- **pass** number of successful pass to teammates
-- **recover** number of recovered balls
-- **loss** number of lost balls
-- **og** own goals
-- **touch** number of ball touched
-- **vote** the player vote (based on the other stats)
+- **goal:** number of goal scored
+- **assist:** number of successful pass to teammates with a subsequent goal
+- **pass:** number of successful pass to teammates
+- **recover:** number of recovered balls
+- **loss:** number of lost balls
+- **og:** own goals
+- **touch:** number of ball touched
+- **vote:** the player vote (based on the other stats)
 
 **Credits**
 - piXelize font - http://xfragg3r.deviantart.com/art/piXelize-font-78478588
