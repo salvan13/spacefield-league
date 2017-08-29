@@ -21,7 +21,7 @@ Spacefield League is a multi-player on-line team game: there are 2 teams, the ob
 - put the ball on the side with your color to score
 - when you are full of energy (you are bright) press **"space"** to charge the shot
 - after shot you lose energy, wait to recover it
-- press **"alt + arrows / wasd / zqsd"** to move only by a small distance and then stop
+- press **"ctrl + arrows / wasd / zqsd"** to move only by a small distance and then stop (precise movement)
 - press **"enter"** to chat, or just click on the input field
 - press **"s"** to switch team (only before the match is started and the other team is not full)
 - press **"m"** toggle music
@@ -30,6 +30,7 @@ Spacefield League is a multi-player on-line team game: there are 2 teams, the ob
 - when you hit the ball you become slower
 - try to use the shot to pass the ball to your teammates
 - try to make team play (play with more friends is much more fun)
+- use the precise movement (ctrl) when you need to turn direction or to dribble opponents
 
 **Vehicle Stats**
 - **energy recovery:** the time needed to recover the energy required to shoot
