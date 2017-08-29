@@ -429,6 +429,9 @@
       /*if((DH.includes(d) && DH.includes(dir)) || (DV.includes(d) && DV.includes(dir))) {
         return;
       }*/
+      if(d == dir) {
+        return;
+      }
       this._dirs.push(dir);
     }
 
