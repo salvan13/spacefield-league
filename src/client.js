@@ -1,6 +1,6 @@
 (() => {
   let socket, state;
-  let prevDir, mute, firstLogin = !localStorage.getItem('cid');
+  let mute, firstLogin = !localStorage.getItem('cid');
   let controlsPupupText = 'arrows / wasd / zqsd = move<br>Space = shot<br>Enter = chat<br>M = toggle music';
   let $ = (s) => document.querySelector(s);
   let $$ = (s) => document.querySelectorAll(s);
@@ -20,7 +20,6 @@
       socket.disconnect();
     }
 
-    prevDir = '';
     let firstLoop = true;
     let name = localStorage.getItem('name');
     msgs.innerHTML = info.innerHTML = '';
@@ -163,12 +162,25 @@
           }
         }
         if(section == 'p') {
-          if(state.p[sprite].cid == cid) {
+          /*if(state.p[sprite].cid == cid) {
             if(attr == 'dir') {
               if(newVal == '') {
                 blink(el, 20, 4000);
               }
             }
+          }*/
+          if(attr == 'dir' && newVal) {
+            let deg = 0;
+            if(newVal == U) {
+              deg = -90;
+            }
+            if(newVal == D) {
+              deg = 90;
+            }
+            if(newVal == L) {
+              deg = 180;
+            }
+            el.style.setProperty('--player-rotate', deg + 'deg');
           }
         }
         if(section == 'm') {
@@ -191,7 +203,6 @@
             blink(el, 20, 4000);
             boom(main);
             play('g');
-            prevDir = null;
           }
         }
         if(section == 'ba') {
@@ -394,11 +405,8 @@
     if(socket && state && !state.m._.sleeping) {
       for(let dir in dirControls) {
         if(dirControls[dir].includes(k)) {
-          if(dir != prevDir) {
-            socket.emit('move', {dir});
-            prevDir = dir;
-            document.activeElement.blur();
-          }
+          socket.emit('move', {dir});
+          document.activeElement.blur();
         }
       }
       if(k == 32 /* spacebar */ && state.p[socket.id].energy == 100 && !state.p[socket.id].powerL) {

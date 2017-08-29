@@ -371,6 +371,7 @@
       this.energy;
       this.info = '';
       this.stopped = 0;
+      this._ld; // lock dir
       this.r();
       if(match.pc[this.cid]) {
         this.px = match.pc[this.cid].px;
@@ -386,6 +387,8 @@
       }
       if(this._dirs.length) {
         this.dir = this._dirs.splice(0, 1)[0];
+      } else if(!this._ld) {
+        this.dir = '';
       }
       match.pc[this.cid] = {px: this.px, py: this.py};
       let newPos = {px: this.px, py: this.py};
@@ -420,8 +423,9 @@
     go(dir) {
       let d = this.dir;
       if(this._dirs.length) {
-        d = this._dirs[0]
+        d = this._dirs[0];
       }
+      this._ld = d == dir;
       if((DH.includes(d) && DH.includes(dir)) || (DV.includes(d) && DV.includes(dir))) {
         return;
       }
@@ -457,6 +461,7 @@
       this.info = '';
       this.powerL = false;
       this.stopped = 0;
+      this._ld = false;
     }
 
     rp() { // reset power
