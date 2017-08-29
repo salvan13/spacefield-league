@@ -405,7 +405,7 @@
     if(socket && state && !state.m._.sleeping) {
       for(let dir in dirControls) {
         if(dirControls[dir].includes(k)) {
-          socket.emit('move', {dir});
+          socket.emit('move', {dir, lock: !e.ctrlKey});
           document.activeElement.blur();
         }
       }

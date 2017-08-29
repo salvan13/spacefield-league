@@ -420,15 +420,15 @@
       }
     }
 
-    go(dir) {
+    go(dir, lock) {
       let d = this.dir;
       if(this._dirs.length) {
         d = this._dirs[0];
       }
-      this._ld = d == dir;
-      if((DH.includes(d) && DH.includes(dir)) || (DV.includes(d) && DV.includes(dir))) {
+      this._ld = lock;
+      /*if((DH.includes(d) && DH.includes(dir)) || (DV.includes(d) && DV.includes(dir))) {
         return;
-      }
+      }*/
       this._dirs.push(dir);
     }
 
@@ -534,7 +534,7 @@
     socket.on("move", (data) => {
       if(socket.m.s.m._.started) {
         if(socket.m.s.p[socket.id]) {
-          socket.m.s.p[socket.id].go(data.dir);
+          socket.m.s.p[socket.id].go(data.dir, data.lock);
         }
       }
     });
