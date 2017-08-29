@@ -1,7 +1,7 @@
 (() => {
   let socket, state;
   let mute, firstLogin = !localStorage.getItem('cid');
-  let controlsPupupText = 'arrows / wasd / zqsd = move<br>Space = shot<br>Enter = chat<br>M = toggle music';
+  let controlsPupupText = 'arrows / wasd / zqsd = move<br>Space = shot<br>ctrl + move = precise move<br>Enter = chat<br>M = toggle music';
   let $ = (s) => document.querySelector(s);
   let $$ = (s) => document.querySelectorAll(s);
 
@@ -120,6 +120,7 @@
                     let s = document.createElement('div');
                     s.classList.add('sh'); // shadow
                     el.appendChild(s);
+                    blink(el, 20, 4000);
                   }
                   if(!firstLoop) {
                     speak(`${state[section][sprite].name} is now in the room`);
@@ -162,13 +163,6 @@
           }
         }
         if(section == 'p') {
-          /*if(state.p[sprite].cid == cid) {
-            if(attr == 'dir') {
-              if(newVal == '') {
-                blink(el, 20, 4000);
-              }
-            }
-          }*/
           if(attr == 'dir' && newVal) {
             let deg = 0;
             if(newVal == U) {

@@ -426,9 +426,6 @@
         d = this._dirs[0];
       }
       this._ld = lock;
-      /*if((DH.includes(d) && DH.includes(dir)) || (DV.includes(d) && DV.includes(dir))) {
-        return;
-      }*/
       if(d == dir) {
         return;
       }

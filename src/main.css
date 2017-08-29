@@ -161,21 +161,8 @@ a:hover {
 
 .p {
   z-index: 2;
-  will-change: left, top, transform;
-}
-/*
-.p[data-dir='u']::before {
-  transform: rotate(-90deg) scale(var(--player-scale));
 }
 
-.p[data-dir='d']::before {
-  transform: rotate(90deg) scale(var(--player-scale));
-}
-
-.p[data-dir='l']::before {
-  transform: rotate(180deg) scale(var(--player-scale));
-}
-*/
 .p::before {
   content: "\a";
   position: absolute;
@@ -215,10 +202,6 @@ a:hover {
 .p[data-v='3']::before {
   clip-path: polygon(70% 10%, 100% 50%, 70% 90%, 0 100%, 15% 50%, 0 0);
 }
-
-/*.p[data-dir='']::before {
-  clip-path: polygon(30% 0, 0 50%, 30% 100%, 70% 100%, 100% 50%, 70% 0);
-}*/
 
 .p::after {
   content: attr(data-name);
@@ -273,7 +256,6 @@ a:hover {
   box-shadow: 0 0 1rem 0.05rem white;
   border-radius: 50%;
   transform: scale(0.9);
-  will-change: left, top;
 }
 
 .t {
