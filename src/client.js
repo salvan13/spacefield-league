@@ -164,17 +164,7 @@
         }
         if(section == 'p') {
           if(attr == 'dir' && newVal) {
-            let deg = 0;
-            if(newVal == U) {
-              deg = -90;
-            }
-            if(newVal == D) {
-              deg = 90;
-            }
-            if(newVal == L) {
-              deg = 180;
-            }
-            el.style.setProperty('--player-rotate', deg + 'deg');
+            el.style.setProperty('--player-rotate', ({u: -90, d: 90, l: 180}[newVal] || 0) + 'deg');
           }
         }
         if(section == 'm') {
