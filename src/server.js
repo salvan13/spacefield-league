@@ -2,8 +2,6 @@
   let TIME = 5 * 60 * 10;
   let colors = ['#e03636', '#17ae09', '#ff0', '#ff3ba5', '#0ff'];
   let names = ['Omicronians', 'Brain Slugs', 'Amphibiosans', 'Nibblonians', 'Blobs', 'Robots', 'Humans'];
-  let DH = [L, R];
-  let DV = [U, D];
   let rand = (n) => {
     return Math.ceil(Math.random() * n);
   };
@@ -164,7 +162,7 @@
       }
       if(!this.fp(this.s.ba._)) {
         let newPos = {py: this.s.ba._.py, px: this.s.ba._.px};
-        if(DH.includes(d)) {
+        if(L == d || R == d) {
           if(rand(2) == 1) {
             newPos.py++;
           } else {
