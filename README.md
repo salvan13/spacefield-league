@@ -17,7 +17,7 @@
 
 **How To Play**
 - Basic controls
-  - move your vehicle with **"arrows / wasd / zqsd"**
+  - move your vehicle with **"arrows (or wasd or zqsd)"**
   - touch the ball to move it
   - when you are full of energy (you are bright) press **"space"** to charge the shot
 - Other keys
@@ -25,11 +25,11 @@
   - press **"s"** to switch team (only before the match is started and the other team is not full)
   - press **"m"** toggle music
 - Pro tips
-  - precise movement: press **"ctrl + arrows / wasd / zqsd"** to move only by a small distance and then stop
+  - precise movement: press **"ctrl (or command) + arrows (or wasd or zqsd)"** to move only by a small distance and then stop
   - when you hit the ball you become slower
   - after shot you lose energy, wait to recover it
   - try to use the shot also for pass the ball to your teammates
-  - use the precise movement (ctrl) when you need to turn direction or to dribble opponents
+  - use the precise movement (ctrl or command + direction) when you have the ball and need to turn direction, or to dribble opponents
   - try to make team play (play with more friends is much more fun!)
 
 **Vehicle Stats**
