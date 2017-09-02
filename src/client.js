@@ -390,7 +390,8 @@
     if(socket && state && !state.m._.sleeping) {
       for(let dir in dirControls) {
         if(dirControls[dir].includes(k)) {
-          socket.emit('move', {dir, lock: !e.ctrlKey});
+          let lockDirection = !e.ctrlKey && !e.metaKey;
+          socket.emit('move', {dir, lock: lockDirection});
           document.activeElement.blur();
         }
       }
