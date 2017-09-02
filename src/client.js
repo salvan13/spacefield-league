@@ -52,8 +52,9 @@
       });
 
       socket.on("rooms", (rooms) => {
-        showPopup('Join in a room', `<label>Select a room<select name="r" required>${rooms.map((r) => `<option value="${r.room}">${r.room} ${r.p >= 0 ? r.p : ''}${r.m >= 0 ? ('/' + r.m) : ''}</option>`).join('')}</select></label>`, true).then((form) => {
-          join(form.get('r'));
+        showPopup('Join in a room', `<label>Select a room<select name="r" required>${rooms.map((r) => `<option value="${r.room}|!!|${r.m}">${r.room} ${r.p >= 0 ? r.p : ''}${r.m >= 0 ? ('/' + r.m) : ''}</option>`).join('')}</select></label>`, true).then((form) => {
+          let r = form.get('r').split('|!!|');
+          join(r[0], r[1]);
         });
       });
 
