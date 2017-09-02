@@ -52,7 +52,7 @@
       });
 
       socket.on("rooms", (rooms) => {
-        showPopup('Join in a room', `<label>Select a room<select name="r" required>${rooms.map((r) => `<option value="${r.room}|!!|${r.m}">${r.room} ${r.p >= 0 ? r.p : ''}${r.m >= 0 ? ('/' + r.m) : ''}</option>`).join('')}</select></label>`, true).then((form) => {
+        showPopup('Join a room', `<label>Select room<select name="r" required>${rooms.map((r) => `<option value="${r.room}|!!|${r.m}">${r.room} ${r.p >= 0 ? r.p : ''}${r.m >= 0 ? ('/' + r.m) : ''}</option>`).join('')}</select></label>`, true).then((form) => {
           let r = form.get('r').split('|!!|');
           join(r[0], r[1]);
         });
@@ -228,7 +228,7 @@
     };
 
     if(firstLogin) {
-      showPopup('Welcome', 'You are about to join a training room<br>Your goal is to put the ball in the side with your color<br>Train and then play in custom rooms').then(() => {
+      showPopup('Welcome', 'You are about to join a training room<br>Your goal is to put the ball on the side with your color').then(() => {
         firstLogin = false;
         showPopup('Controls', controlsPupupText).then(connect);
       });
