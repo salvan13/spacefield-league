@@ -1,5 +1,5 @@
 # Spacefield League
-**[Js13kGames](http://js13kgames.com/) 2017 multiplayer game**
+**[Js13kGames](http://js13kgames.com/entries/spacefield-league) 2017 multiplayer game**
 
 ![spacefield league](https://raw.githubusercontent.com/salvan13/spacefield-league/master/screenshot/400x250.png)
 
