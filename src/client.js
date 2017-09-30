@@ -262,7 +262,7 @@
     };
 
     if(firstLogin) {
-      showPopup('Welcome', 'You are about to join a training room<br>Your goal is to put the ball on the side with your color<br>then create a room to play with your friends<br>4vs4 and 5vs5 games are the funniest one').then(() => {
+      showPopup('Welcome', 'You are about to join a training room<br>Your goal is to put the ball on the side with your color.<br><br>then create a room to play with your friends<br>4vs4 and 5vs5 games are the funniest one').then(() => {
         firstLogin = false;
         showPopup('Controls', controlsPupupText).then(selectVehicle);
       });
