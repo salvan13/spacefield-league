@@ -227,12 +227,7 @@
       }
     };
 
-    if(firstLogin) {
-      showPopup('Welcome', 'You are about to join a training room<br>Your goal is to put the ball on the side with your color').then(() => {
-        firstLogin = false;
-        showPopup('Controls', controlsPupupText).then(connect);
-      });
-    } else {
+    let selectVehicle = () => {
       showPopup('vehicle selection', `<input type="hidden" name="v"></input><div class="v"><div class="p me" data-info=""><div class="sh"></div></div><div class="i"><p data-p="rec">energy recovery</p><p data-p="shot">shot power</p><p data-p="hit">hit power</p></div><div class="s">${V.map((v, i) => `<a href='#${i}' data-i=${i}>${v.n}</a>`).join('')}</div></div>`).then((form) => {
         let vehicle = form.get('v');
         localStorage.setItem('v', vehicle);
@@ -264,6 +259,15 @@
           el.click();
         }
       });
+    };
+
+    if(firstLogin) {
+      showPopup('Welcome', 'You are about to join a training room<br>Your goal is to put the ball on the side with your color').then(() => {
+        firstLogin = false;
+        showPopup('Controls', controlsPupupText).then(selectVehicle);
+      });
+    } else {
+      selectVehicle();
     }
 
   };
