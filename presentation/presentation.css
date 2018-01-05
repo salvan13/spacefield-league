@@ -61,6 +61,14 @@ hr {
   margin: 2rem 0;
 }
 
+a, a:visited {
+  color: #24cec2;
+}
+
+a:hover {
+  color: #aaf8f1;
+}
+
 p:hover, li:hover {
   filter: drop-shadow(0 0 0.2rem red);
 }
@@ -72,3 +80,13 @@ p:hover, li:hover {
 .borders {
   border: 0.1rem solid #ff0;
 }
+
+.v {
+  padding-bottom: 1rem;
+}
+
+.v .p {
+  height: 2rem;
+  width: 2rem;
+}
+
