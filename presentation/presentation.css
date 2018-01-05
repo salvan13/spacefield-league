@@ -45,8 +45,20 @@ img {
   object-fit: contain;
 }
 
-ul {
+ul, ol {
   text-align: left;
+}
+
+ul li {
+  list-style: url("assets/arrow.svg");
+}
+
+hr {
+  width: 100%;
+  height: 0.1rem;
+  background: yellow;
+  border: none;
+  margin: 2rem 0;
 }
 
 p:hover, li:hover {
