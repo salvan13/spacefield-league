@@ -231,5 +231,23 @@
       <a href="http://js13kgames.com/">js13k competition</a>
       <a href="http://js13kgames.com/entries/spacefield-league">game page</a>
     </section>
+    
+    <script>
+      // jump to next section on click
+      document.body.addEventListener('click', (e) => {
+        if(e.target.tagName == 'A') {
+          return;
+        }
+        let section;
+        if(e.target.tagName == 'SECTION') {
+          section = e.target;
+        } else {
+          section = e.target.closest('section');
+        }
+        if(section && section.nextElementSibling) {
+          document.body.scrollTo(0, section.nextElementSibling.offsetTop);
+        }
+      });
+    </script>
   </body>
 </html>
