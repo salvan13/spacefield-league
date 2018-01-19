@@ -232,6 +232,7 @@
     </section>
     
     <script>
+    if(!CSS.supports("scroll-snap-type: mandatory")) {
       // jump to next section on click
       document.body.addEventListener('click', (e) => {
         if(e.target.tagName == 'A') {
@@ -247,6 +248,7 @@
           document.body.scrollTo(0, section.nextElementSibling.offsetTop);
         }
       });
+    }
     </script>
   </body>
 </html>
