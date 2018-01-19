@@ -143,8 +143,8 @@
                 let newVal = state[section][sprite][attr];
                 let oldVal = el.dataset[attr];
                 let isNew = oldVal == undefined;
-                let isChanded = !isNew && ((oldVal + "") != (newVal + ""));
-                on(el, state, section, sprite, attr, newVal, oldVal, isNew, isChanded);
+                let isChanged = !isNew && ((oldVal + "") != (newVal + ""));
+                on(el, state, section, sprite, attr, newVal, oldVal, isNew, isChanged);
               }
             }
           }
@@ -154,8 +154,8 @@
 
     };
 
-    let on = (el, state, section, sprite, attr, newVal, oldVal, isNew, isChanded) => {
-      if(isNew || isChanded) {
+    let on = (el, state, section, sprite, attr, newVal, oldVal, isNew, isChanged) => {
+      if(isNew || isChanged) {
         el.style.setProperty(`--${attr}`, newVal);
         el.dataset[attr] = newVal;
         if(section == 't') {
@@ -174,7 +174,7 @@
           }
           if(attr == 'started' || attr == 'ended') {
             main.classList.toggle(attr, newVal);
-            if(isChanded) {
+            if(isChanged) {
               play('m');
               setTimeout(() => play('m', 2), 300);
               setTimeout(() => play('m', 3), 800);
@@ -182,7 +182,7 @@
           }
         }
       }
-      if(isChanded) {
+      if(isChanged) {
         if(section == 't') {
           if(attr == 'score') {
             blink(el, 20, 4000);
