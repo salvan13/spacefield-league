@@ -233,20 +233,33 @@
     
     <script>
     if(!CSS.supports("scroll-snap-type: mandatory")) {
-      // jump to next section on click
-      document.body.addEventListener('click', (e) => {
-        if(e.target.tagName == 'A') {
+      // navigate sections on scroll
+      let sectionIndex = 0;
+      let lock = false;
+      let prevScroll = 0;
+      let sections = document.body.querySelectorAll('section');
+      document.body.addEventListener('scroll', (e) => {
+        if(lock) {
           return;
         }
-        let section;
-        if(e.target.tagName == 'SECTION') {
-          section = e.target;
-        } else {
-          section = e.target.closest('section');
-        }
-        if(section && section.nextElementSibling) {
-          document.body.scrollTo(0, section.nextElementSibling.offsetTop);
-        }
+        lock = true;
+        setTimeout(() => {
+          if(document.body.scrollTop > prevScroll) {
+            sectionIndex++;
+          } else if(document.body.scrollTop < prevScroll) {
+            sectionIndex--;
+          }
+          if(sectionIndex > sections.length - 1) {
+            sectionIndex = sections.length - 1;
+          } 
+          if(sectionIndex < 0) {
+            sectionIndex = 0;
+          } 
+          
+          let section = sections[sectionIndex];
+          setTimeout(() => document.body.scrollTo(0, sections[sectionIndex].offsetTop), 10);
+          setTimeout(() => { lock = false; prevScroll = document.body.scrollTop; }, 200);
+        }, 50);
       });
     }
     </script>
