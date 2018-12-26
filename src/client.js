@@ -417,6 +417,33 @@
     }
   });
 
+  $('.up').addEventListener('click', e => {
+    e.preventDefault();
+    socket.emit('move', {dir: 'u', lock: true});
+  });
+
+  $('.down').addEventListener('click', e => {
+    e.preventDefault();
+    socket.emit('move', {dir: 'd', lock: true});
+  });
+
+  $('.left').addEventListener('click', e => {
+    e.preventDefault();
+    socket.emit('move', {dir: 'l', lock: true});
+  });
+
+  $('.right').addEventListener('click', e => {
+    e.preventDefault();
+    socket.emit('move', {dir: 'r', lock: true});
+  });
+
+  $('.space').addEventListener('click', e => {
+    e.preventDefault();
+    state.m._.started ? 
+      socket.emit('shot') :
+      socket.emit('switch');
+  });
+
   let cid = localStorage.getItem('cid') || Math.ceil(Math.random() * 10e15);
   localStorage.setItem('cid', cid);
   login.querySelector('input').value = localStorage.getItem('name');

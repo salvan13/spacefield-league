@@ -583,3 +583,67 @@ tbody tr:hover td {
     transform: rotate(360deg);
   }
 }
+
+.controls {
+  display: none;
+}
+
+@media all and (max-width: 699px)  {
+
+  .c,
+  .ct {
+    display: none;
+  }
+
+  input, select {
+    padding: 2.5vmin;
+    font-size: 130%;
+  }
+
+  .popup {
+    left: 1vw;
+    width: 98vw;
+    top: 5vh;
+    max-height: 98vh;
+    font-size: 140%;
+  }
+
+  .started ~ .controls,
+  .ready ~ .controls {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 0.3rem;
+    position: fixed;
+    height: 32vh;
+    width: 98vw;
+    bottom: 5vh;
+    left: 1vw;
+    opacity: 0.3;
+  }
+
+  .controls .up {
+    grid-row: 1 / 1;
+    grid-column: 2 / 2;
+  }
+
+  .controls .down {
+    grid-row: 2 / 2;
+    grid-column: 2 / 2;
+  }
+
+  .controls .left {
+    grid-row: 2 / 2;
+    grid-column: 1 / 1;
+  }
+
+  .controls .right {
+    grid-row: 2 / 2;
+    grid-column: 3 / 3;
+  }
+
+  .controls .space {
+    grid-row: 2 / 2;
+    grid-column: 6 / 6;
+  }
+
+}
