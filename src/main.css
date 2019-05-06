@@ -646,4 +646,8 @@ tbody tr:hover td {
     grid-column: 6 / 6;
   }
 
+  .controls button {
+    touch-action: manipulation;
+  }
+
 }
