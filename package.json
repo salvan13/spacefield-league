@@ -16,7 +16,7 @@
     "node": "8.*"
   },
   "dependencies": {
-    "express": "4.15.*",
+    "express": "4.17.*",
     "glitchd-client-node": "*",
     "socket.io": "2.0.*"
   },
