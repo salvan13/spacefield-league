@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-babel-minify": "^0.2.0",
+    "gulp-babel-minify": "^0.5.2",
     "gulp-csso": "^3.0.0",
     "gulp-htmlmin": "^3.0.0",
     "gulp-zip": "^4.0.0"
