@@ -1,7 +1,7 @@
 (() => {
   let TIME = 5 * 60 * 10;
-  let colors = ['#e03636', '#17ae09', '#ff0', '#ff3ba5', '#0ff'];
-  let names = ['Omicronians', 'Brain Slugs', 'Amphibiosans', 'Nibblonians', 'Blobs', 'Robots', 'Humans'];
+  let colors = ['#17ae09', '#ff0', '#ff3ba5', '#0ff'];
+  let names = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
   let rand = (n) => {
     return Math.ceil(Math.random() * n);
   };
@@ -40,11 +40,11 @@
         p: {}, // players
         w: {}, // watchers
         ba: { // ball
-          _: {id: "ba", px: 48 + rand(2), py: 48 + rand(2)}
+          _: { id: "ba", px: 48 + rand(2), py: 48 + rand(2) }
         },
         t: { // teams
-          a: {id: "tA", name: na, color: ca, score: 0},
-          b: {id: "tB", name: nb, color: cb, score: 0}
+          a: { id: "tA", name: na, color: ca, score: 0 },
+          b: { id: "tB", name: nb, color: cb, score: 0 }
         },
         bl: {} // blocks
       };
@@ -62,33 +62,33 @@
         vote: {}
       };
 
-      for(let x = 20; x < 80; x++) {
+      for (let x = 20; x < 80; x++) {
         [30, 69].forEach((y) => {
-          let id = 'b'+ x + '_' + y;
-          this.s.bl[id] = {id, px: x, py: y, x};
+          let id = 'b' + x + '_' + y;
+          this.s.bl[id] = { id, px: x, py: y, x };
         });
       }
 
       this.interval = setInterval(() => {
         let ballMoved = false;
-        if(!this.s.m._.sleeping && !this.s.m._.ended) {
-          if(this.s.m._.started) {
-            if(this.s.m._.time > 0) {
+        if (!this.s.m._.sleeping && !this.s.m._.ended) {
+          if (this.s.m._.started) {
+            if (this.s.m._.time > 0) {
               this.s.m._.time--;
             }
-            if(!this.cg()) {
-              for(let id in this.s.p) {
+            if (!this.cg()) {
+              for (let id in this.s.p) {
                 let p = this.s.p[id];
                 p.u(this);
-                if(!ballMoved && this.ub(p.px, p.py, p.dir, p.power)) {
+                if (!ballMoved && this.ub(p.px, p.py, p.dir, p.power)) {
                   let prevTouch = this.lt;
                   this.lt = p.cid;
-                  if(prevTouch && prevTouch != this.lt) {
+                  if (prevTouch && prevTouch != this.lt) {
                     let prev = this.s.p[this.cti(prevTouch)];
-                    if(prev) {
+                    if (prev) {
                       let prevTeam = prev.team;
                       let currentTeam = this.s.p[this.cti(this.lt)].team;
-                      if(prevTeam != currentTeam) {
+                      if (prevTeam != currentTeam) {
                         this.inc('recover');
                         this.inc('loss', prevTouch);
                         this.ap = null;
@@ -105,9 +105,9 @@
                   ballMoved = true;
                 }
               }
-              if(this.lgt - this.s.m._.time == 250) {
-                for(let b in this.s.bl) {
-                  if(this.s.bl[b].px >= 47 && this.s.bl[b].px < 53) {
+              if (this.lgt - this.s.m._.time == 250) {
+                for (let b in this.s.bl) {
+                  if (this.s.bl[b].px >= 47 && this.s.bl[b].px < 53) {
                     this.s.bl[b].px += this.s.bl[b].px >= 50 ? 3 : -3;
                   }
                 }
@@ -116,12 +116,12 @@
           }
         }
         this.bc();
-        if(this.s.m._.ended) {
+        if (this.s.m._.ended) {
           clearInterval(this.interval);
-        } else if(this.s.m._.time <= 0 || Object.keys(this.s.p).length == 0) {
+        } else if (this.s.m._.time <= 0 || Object.keys(this.s.p).length == 0) {
           this.s.m._.ended = true;
-          let winner = this.s.t.a.score > this.s.t.b.score ? 'a' : (this.s.t.a.score < this.s.t.b.score ? 'b' : '' );
-          this.bc('stats', {p: this.st, t: !winner ? 'draw' : this.s.t[winner].name + ' won', w: winner});
+          let winner = this.s.t.a.score > this.s.t.b.score ? 'a' : (this.s.t.a.score < this.s.t.b.score ? 'b' : '');
+          this.bc('stats', { p: this.st, t: !winner ? 'draw' : this.s.t[winner].name + ' won', w: winner });
           console.log(this.s.m._.name, this.st);
         }
       }, 100);
@@ -131,28 +131,28 @@
     ub(x, y, d, power) { // update ball
       let ballMoved = false;
       let u = () => {
-        let newPos = {px: x, py: y};
-        if(x == this.s.ba._.px && y == this.s.ba._.py) {
+        let newPos = { px: x, py: y };
+        if (x == this.s.ba._.px && y == this.s.ba._.py) {
           let i = 1;
-          if(d == U) {
+          if (d == U) {
             newPos.py--;
-          } else if(d == D) {
+          } else if (d == D) {
             newPos.py++;
-          } else if(d == L) {
+          } else if (d == L) {
             newPos.px--;
-          } else if(d == R) {
+          } else if (d == R) {
             newPos.px++;
           }
         }
-        if(isValidPos(newPos) && this.fp(newPos)) {
+        if (isValidPos(newPos) && this.fp(newPos)) {
           this.s.ba._.px = newPos.px;
           this.s.ba._.py = newPos.py;
           ballMoved = true;
           return 1;
         }
       }
-      while(power > 0) {
-        if(u()) {
+      while (power > 0) {
+        if (u()) {
           x = this.s.ba._.px;
           y = this.s.ba._.py;
           power--;
@@ -160,22 +160,22 @@
           break;
         }
       }
-      if(!this.fp(this.s.ba._)) {
-        let newPos = {py: this.s.ba._.py, px: this.s.ba._.px};
-        if(L == d || R == d) {
-          if(rand(2) == 1) {
+      if (!this.fp(this.s.ba._)) {
+        let newPos = { py: this.s.ba._.py, px: this.s.ba._.px };
+        if (L == d || R == d) {
+          if (rand(2) == 1) {
             newPos.py++;
           } else {
             newPos.py--;
           }
         } else {
-          if(rand(2) == 1) {
+          if (rand(2) == 1) {
             newPos.px++;
           } else {
             newPos.px--;
           }
         }
-        if(isValidPos(newPos) && this.fp(newPos)) {
+        if (isValidPos(newPos) && this.fp(newPos)) {
           this.s.ba._.px = newPos.px;
           this.s.ba._.py = newPos.py;
         }
@@ -184,16 +184,19 @@
     }
 
     cg() { // check goal
-      if(this.s.ba._.py == 0 || this.s.ba._.py == 99) {
+      if (this.s.ba._.py == 0 || this.s.ba._.py == 99) {
         let tg = this.s.ba._.py == 0 ? 'b' : 'a';
         this.s.t[tg].score++;
-        if(this.s.p[this.cti(this.lt)].team == tg) {
+        if (this.s.p[this.cti(this.lt)].team == tg) {
           this.inc('goal');
+          this.bc('speak', `goal! ${this.s.p[this.cti(this.lt)].name} goal!`);
         } else {
           this.inc('og');
+          this.bc('speak', `it's an own goal by ${this.s.p[this.cti(this.lt)].name}!`);
         }
-        if(this.ap && this.s.p[this.cti(this.ap)].team == tg) {
+        if (this.ap && this.s.p[this.cti(this.ap)].team == tg) {
           this.inc('assist', this.ap);
+          this.bc('speak', `${this.s.p[this.cti(this.ap)].name} served the assist.`);
         }
         this.lgt = this.s.m._.time;
         this.sf(2000).then(() => {
@@ -206,10 +209,11 @@
     r() { // reset
       this.s.ba._.px = this.s.ba._.py = 50;
       this.lt = null;
-      for(let id in this.s.p) {
+      this.ap = null;
+      for (let id in this.s.p) {
         this.s.p[id].r();
       }
-      for(let b in this.s.bl) {
+      for (let b in this.s.bl) {
         this.s.bl[b].px = this.s.bl[b].x;
       }
     }
@@ -225,26 +229,26 @@
     }
 
     adp(id, name, cid, v) { // add player
-      for(let id in this.s.p) {
-        if(this.s.p[id].cid == cid) {
+      for (let id in this.s.p) {
+        if (this.s.p[id].cid == cid) {
           return;
         }
       }
-      if(this.f()) {
-        this.s.w[id] = {cid, name, id};
+      if (this.f()) {
+        this.s.w[id] = { cid, name, id };
         return;
       }
       let team;
       let a = this.cp("a");
       let b = this.cp("b");
-      if(a > b) {
+      if (a > b) {
         team = "b";
       } else {
         team = "a";
       }
-      this.s.p[id] = new Player({id, team, name, cid, v}, this);
-      if(!this.s.m._.started && this.cp() >= this.s.m._.minp) {
-        if(this.cp() < 2) {
+      this.s.p[id] = new Player({ id, team, name, cid, v }, this);
+      if (!this.s.m._.started && this.cp() >= this.s.m._.minp) {
+        if (this.cp() < 2) {
           this.s.m._.started = true;
         } else {
           this.sf(2000).then(() => {
@@ -256,8 +260,8 @@
     }
 
     cti(cid) { // client id to socket id
-      for(let p in this.s.p) {
-        if(this.s.p[p].cid == cid) {
+      for (let p in this.s.p) {
+        if (this.s.p[p].cid == cid) {
           return p;
         }
       }
@@ -265,8 +269,8 @@
 
     cp(team) { // count players
       let c = 0;
-      for(let id in this.s.p) {
-        if(!team || this.s.p[id].team == team) {
+      for (let id in this.s.p) {
+        if (!team || this.s.p[id].team == team) {
           c++;
         }
       }
@@ -274,13 +278,13 @@
     }
 
     fp(pos) { // is free position
-      for(let id in this.s.p) {
-        if(this.s.p[id].px == pos.px && this.s.p[id].py == pos.py) {
+      for (let id in this.s.p) {
+        if (this.s.p[id].px == pos.px && this.s.p[id].py == pos.py) {
           return false;
         }
       }
-      for(let id in this.s.bl) {
-        if(this.s.bl[id].px == pos.px && this.s.bl[id].py == pos.py) {
+      for (let id in this.s.bl) {
+        if (this.s.bl[id].px == pos.px && this.s.bl[id].py == pos.py) {
           return false;
         }
       }
@@ -288,12 +292,12 @@
     }
 
     inc(type, who, n = 1) { // increment players stats
-      if(!who) {
+      if (!who) {
         who = this.lt;
       }
       let stat = this.st[type];
-      if(!stat[who]) {
-        stat[who] = {name: this.s.p[this.cti(who)].name, v: type == 'vote' ? 5 : 0, t: this.s.p[this.cti(who)].team};
+      if (!stat[who]) {
+        stat[who] = { name: this.s.p[this.cti(who)].name, v: type == 'vote' ? 5 : 0, t: this.s.p[this.cti(who)].team };
       }
       stat[who].v += n;
       let vote = {
@@ -305,7 +309,7 @@
         pass: 0.15,
         assist: 0.15
       }[type];
-      if(vote) {
+      if (vote) {
         this.inc('vote', who, vote);
       }
     }
@@ -316,36 +320,36 @@
 
     bc(event, data) { // broadcast
       let patches;
-      for(let id in this.ss) {
-        if(event) {
+      for (let id in this.ss) {
+        if (event) {
           this.ss[id].emit(event, data);
         } else {
-          if(!this.ss[id]._firstSend) {
+          if (!this.ss[id]._firstSend) {
             this.ss[id].emit("update", this.s);
             this.ss[id]._firstSend = true;
           } else {
-            if(!patches) {
+            if (!patches) {
               patches = [];
-              for(let section in this.s) {
-                for(let sprite in this.s[section]) {
-                  for(let attr in this.s[section][sprite]) {
-                    if(attr[0] == '_') {
+              for (let section in this.s) {
+                for (let sprite in this.s[section]) {
+                  for (let attr in this.s[section][sprite]) {
+                    if (attr[0] == '_') {
                       continue;
                     }
                     let p = this.ps;
                     let v = this.s[section][sprite][attr];
-                    if(!p[section] || !p[section][sprite] || p[section][sprite][attr] == undefined || p[section][sprite][attr] != v) {
-                      patches.push({k: `${section}.${sprite}.${attr}`, v});
+                    if (!p[section] || !p[section][sprite] || p[section][sprite][attr] == undefined || p[section][sprite][attr] != v) {
+                      patches.push({ k: `${section}.${sprite}.${attr}`, v });
                     }
                   }
                 }
               }
             }
-            this.ss[id].emit("update", {patches});
+            this.ss[id].emit("update", { patches });
           }
         }
       }
-      if(!event) {
+      if (!event) {
         this.ps = JSON.parse(JSON.stringify(this.s));
       }
     }
@@ -371,48 +375,48 @@
       this.stopped = 0;
       this._ld; // lock dir
       this.r();
-      if(match.pc[this.cid]) {
+      if (match.pc[this.cid]) {
         this.px = match.pc[this.cid].px;
         this.py = match.pc[this.cid].py;
       } else {
-        match.pc[this.cid] = {px: this.px, py: this.py};
+        match.pc[this.cid] = { px: this.px, py: this.py };
       }
     }
 
     u(match) { // update
-      if(this.stopped > 0) {
+      if (this.stopped > 0) {
         this.stopped--;
       }
-      if(this._dirs.length) {
+      if (this._dirs.length) {
         this.dir = this._dirs.splice(0, 1)[0];
-      } else if(!this._ld) {
+      } else if (!this._ld) {
         this.dir = '';
       }
-      match.pc[this.cid] = {px: this.px, py: this.py};
-      let newPos = {px: this.px, py: this.py};
-      if(!this.stopped) {
-        if(this.dir == U) {
+      match.pc[this.cid] = { px: this.px, py: this.py };
+      let newPos = { px: this.px, py: this.py };
+      if (!this.stopped) {
+        if (this.dir == U) {
           newPos.py--;
-        } else if(this.dir == D) {
+        } else if (this.dir == D) {
           newPos.py++;
-        } else if(this.dir == L) {
+        } else if (this.dir == L) {
           newPos.px--;;
-        } else if(this.dir == R) {
+        } else if (this.dir == R) {
           newPos.px++;
         }
       }
-      if(isValidPos(newPos) && match.fp(newPos)) {
+      if (isValidPos(newPos) && match.fp(newPos)) {
         this.px = newPos.px;
         this.py = newPos.py;
       }
-      if(this.power == this.h() && this.energy < 100) {
+      if (this.power == this.h() && this.energy < 100) {
         this.energy += V[this.v].rec / 4;
       }
-      if(this.energy > 100) {
+      if (this.energy > 100) {
         this.energy = 100;
       }
-      if(this.energy < 100) {
-        this.info = 'LOST ENERGY';
+      if (this.energy < 100) {
+        this.info = 'SHOT RECHARGING';
       } else {
         this.info = '';
       }
@@ -420,18 +424,18 @@
 
     go(dir, lock) {
       let d = this.dir;
-      if(this._dirs.length) {
+      if (this._dirs.length) {
         d = this._dirs[0];
       }
       this._ld = lock;
-      if(d == dir) {
+      if (d == dir) {
         return;
       }
       this._dirs.push(dir);
     }
 
     shot() {
-      if(this.energy == 100) {
+      if (this.energy == 100) {
         this.power = V[this.v].shot * 4;
         this.powerL = true;
       }
@@ -443,7 +447,7 @@
 
     switch(match) {
       let otherTeam = this.team == 'a' ? 'b' : 'a';
-      if(!match.s.m._.started && !match.f() && match.cp(otherTeam) < match.s.m._.maxp / 2) {
+      if (!match.s.m._.started && !match.f() && match.cp(otherTeam) < match.s.m._.maxp / 2) {
         this.team = otherTeam;
         this.py = this.team == 'a' ? 4 : 95;
       }
@@ -463,7 +467,7 @@
     }
 
     rp() { // reset power
-      if(this.power != this.h()) {
+      if (this.power != this.h()) {
         this.power = this.h();
         this.energy = 0;
         this.powerL = false;
@@ -472,7 +476,7 @@
 
     back(match) {
       let pc = match.pc[this.cid];
-      if(pc) {
+      if (pc) {
         this.px = pc.px;
         this.py = pc.py;
       }
@@ -489,8 +493,8 @@
   let rooms = {};
 
   setInterval(() => {
-    for(let r in rooms) {
-      if(rooms[r].s.m._.ended) {
+    for (let r in rooms) {
+      if (rooms[r].s.m._.ended) {
         delete rooms[r];
       }
     }
@@ -505,76 +509,83 @@
     let vehicle = socket.handshake.query.v;
     let isTraining = roomName == 'training';
 
-    if(!rooms[roomName] || rooms[roomName].s.m._.ended || (rooms[roomName].f() && isTraining)) {
-      if(players == 0 && rooms[roomName]) {
+    if (!rooms[roomName] || rooms[roomName].s.m._.ended || (rooms[roomName].f() && isTraining)) {
+      if (players == 0 && rooms[roomName]) {
         players = rooms[roomName].s.m._.maxp;
       }
-      if(!players) {
+      if (!players) {
         players = 10;
       }
-      rooms[roomName] = new Match({name: roomName, maxp: players, minp: isTraining ? 1 : players});
+      rooms[roomName] = new Match({ name: roomName, maxp: players, minp: isTraining ? 1 : players });
       console.log("new match", rooms[roomName].s.m._.id, roomName);
     }
 
     socket.m = rooms[roomName];
 
     socket.on("disconnect", () => {
-      if(socket.m.s.p[socket.id]) {
+      if (socket.m.s.p[socket.id]) {
         socket.m.s.p[socket.id].deleted = true;
         socket.m.bc();
         delete socket.m.s.p[socket.id];
-      } else if(socket.m.s.w[socket.id]) {
+      } else if (socket.m.s.w[socket.id]) {
         delete socket.m.s.w[socket.id];
       }
       delete socket.m.ss[socket.id];
+      console.log(name, "left", roomName);
     });
 
     socket.on("move", (data) => {
-      if(socket.m.s.m._.started) {
-        if(socket.m.s.p[socket.id]) {
+      if (socket.m.s.m._.started) {
+        if (socket.m.s.p[socket.id]) {
           socket.m.s.p[socket.id].go(data.dir, data.lock);
         }
       }
     });
 
     socket.on("shot", (data) => {
-      if(socket.m.s.p[socket.id]) {
+      if (socket.m.s.p[socket.id]) {
         socket.m.s.p[socket.id].shot();
       }
     });
 
     socket.on("switch", (data) => {
-      if(socket.m.s.p[socket.id]) {
+      if (socket.m.s.p[socket.id]) {
         socket.m.s.p[socket.id].switch(socket.m);
       }
     });
 
     socket.on("roomlist", () => {
-      let list = [{room: 'training'}];
-      for(let r in rooms) {
+      let list = [{ room: 'training' }];
+      for (let r in rooms) {
         let p = rooms[r].cp();
-        if(p > 0 && r != 'training') {
-          list.push({room: r, p, m: rooms[r].s.m._.maxp});
+        if (p > 0 && r != 'training') {
+          list.push({ room: r, p, m: rooms[r].s.m._.maxp });
         }
       }
       socket.emit("rooms", list);
     });
 
     socket.on("msg", (data) => {
-      if(socket.m.s.p[socket.id]) {
+      if (socket.m.s.p[socket.id]) {
         data.user = socket.m.s.p[socket.id].name;
         data.team = socket.m.s.p[socket.id].team;
-      } else if(socket.m.s.w[socket.id]) {
+      } else if (socket.m.s.w[socket.id]) {
         data.user = socket.m.s.w[socket.id].name;
       } else {
         return;
       }
-      console.log(socket.m.s.m._.name, '-', data.user, ':' , data.text);
+      console.log(socket.m.s.m._.name, '-', data.user, ':', data.text);
       data.text = cleanString(data.text);
       socket.m.bc("msg", data);
     });
 
-    console.log(name, "join", roomName);
+    socket.on("ping", (cb) => {
+      if (typeof cb === "function") {
+        cb();
+      }
+    });
+
+    console.log(name, "joined", roomName);
     socket.m.ss[socket.id] = socket;
     socket.m.adp(socket.id, name, cid, vehicle);
     socket.m.bc();
