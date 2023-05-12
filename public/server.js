@@ -31,7 +31,7 @@
             started: false,
             ended: false,
             sleeping: false,
-            time: TIME,
+            time: cfg.isTraining ? Number.MAX_SAFE_INTEGER : TIME,
             name: cfg.name,
             maxp: cfg.maxp,
             minp: cfg.minp
@@ -516,7 +516,7 @@
       if (!players) {
         players = 10;
       }
-      rooms[roomName] = new Match({ name: roomName, maxp: players, minp: isTraining ? 1 : players });
+      rooms[roomName] = new Match({ name: roomName, maxp: players, minp: isTraining ? 1 : players, isTraining });
       console.log("new match", rooms[roomName].s.m._.id, roomName);
     }
 

@@ -304,6 +304,10 @@ a:hover {
   content: attr(data-time);
 }
 
+.m[data-name="training"]::before {
+  display: none;
+}
+
 .m[data-started="false"]::after, .m[data-ended="true"]::after {
   position: absolute;
   top: 10vmin;
