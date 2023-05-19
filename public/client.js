@@ -355,7 +355,7 @@
   });
 
   $('.cr').addEventListener('click', () => {
-    showPopup('Create room', `<label>Room name<input maxlength="14" pattern="[A-Za-z0-9]*" title="only letters and numbers" required autocomplete="off" name="r"></input></label> <label># players <select name="n">${[10, 8, 6, 4, 2].map(n => `<option value="${n}">${n / 2} vs ${n / 2}</option>`)}</select></label>`, true).then((form) => {
+    showPopup('Create room', `<label>Room name<input maxlength="14" pattern="[A-Za-z0-9]*" title="only letters and numbers" required autocomplete="off" name="r"></input></label> <label># players <select name="n">${[20, 18, 16, 14, 12, 10, 8, 6, 4, 2].map(n => `<option value="${n}">${n / 2} vs ${n / 2}</option>`)}</select></label>`, true).then((form) => {
       join(form.get('r'), form.get('n'));
     });
   });

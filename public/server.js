@@ -514,7 +514,7 @@
         players = rooms[roomName].s.m._.maxp;
       }
       if (!players) {
-        players = 10;
+        players = 20;
       }
       rooms[roomName] = new Match({ name: roomName, maxp: players, minp: isTraining ? 1 : players, isTraining });
       console.log("new match", rooms[roomName].s.m._.id, roomName);
