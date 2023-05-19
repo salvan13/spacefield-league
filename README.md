@@ -12,7 +12,7 @@
 - **statistics and votes** for each player on end-match
 - training room
 - custom rooms
-- matches from **1vs1 to 5vs5** players
+- matches from **1vs1 to 10vs10** players
 - spectator mode (if you join in a full room)
 - room chat
 - full-screen
