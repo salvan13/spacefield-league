@@ -1,45 +1,17 @@
-"use strict";
+import express from "express";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import { main } from "./lib/main.js";
 
-const createSandbox = () => {
-  const sandbox = {
-    console,
-    setTimeout,
-    clearTimeout,
-    setInterval,
-    clearInterval
-  };
+const app = express();
+const server = createServer(app);
+const io = new Server(server);
 
-  Object.defineProperty(sandbox, 'module', {
-    enumerable: true,
-    configurable: false,
-    writable: false,
-    value: Object.create(null)
-  });
-  sandbox.module.exports = Object.create(null);
-  sandbox.exports = sandbox.module.exports;
+app.set("port", process.env.PORT || 3000);
+app.use(express.static("public"));
+app.use(express.static("shared"));
+io.on("connection", main);
 
-  return sandbox;
-};
-
-require('fs').readFile('./public/shared.js', 'utf8', (err, shared) => {
-  require('fs').readFile('./public/server.js', 'utf8', (err, code) => {
-    if (err) {
-      throw err
-    }
-
-    const
-      express = require('express'),
-      app = express(),
-      server = require('http').Server(app),
-      io = require('socket.io')(server),
-      sandbox = createSandbox();
-
-    require('vm').runInNewContext(shared + '\n' + code, sandbox);
-    io.on('connection', sandbox.module.exports);
-    app.set('port', (process.env.PORT || 3000));
-    app.use(express.static('public'));
-    server.listen(app.get('port'), () => {
-      console.log('Server started at port: ' + app.get('port'));
-    });
-  });
+server.listen(app.get("port"), () => {
+  console.log(`Server started on port ${app.get("port")}`);
 });
