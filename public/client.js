@@ -385,35 +385,27 @@ chatForm.addEventListener('submit', (e) => {
   chat.querySelector('input').blur();
 });
 
-const dirControls = {
-  u: [38, 90, 87],
-  r: [39, 68],
-  d: [40, 83],
-  l: [37, 65, 81]
-};
-
 window.addEventListener('keydown', (e) => {
   if (e.target.tagName == 'INPUT' || e.target.tagName == 'SELECT') {
     return;
   }
-  const k = e.keyCode;
+
   if (socket && state && !state.m._.sleeping) {
-    for (let dir in dirControls) {
-      if (dirControls[dir].includes(k)) {
-        const lockDirection = !e.ctrlKey && !e.metaKey;
-        socket.emit('move', { dir, lock: lockDirection });
-        document.activeElement.blur();
-      }
+    if (e.code.startsWith("Arrow")) {
+      const dir = e.code.at(5).toLowerCase();
+      const lockDirection = !e.ctrlKey && !e.metaKey;
+      socket.emit('move', { dir, lock: lockDirection });
+      document.activeElement.blur();
     }
-    if (k == 32 /* spacebar */ && state.p[socket.id].energy == 100 && !state.p[socket.id].powerL) {
+    if (e.code == "Space" && state.p[socket.id].energy == 100 && !state.p[socket.id].powerL) {
       socket.emit('shot');
       play('p');
     }
-    if (k == 84 /* t */) {
+    if (e.code == "KeyT") {
       socket.emit('switch');
     }
   }
-  if (k == 13 /* enter */ && e.target.tagName != 'BUTTON') {
+  if (e.code == "Enter" && e.target.tagName != 'BUTTON') {
     setTimeout(() => {
       chat.querySelector('input').focus();
     }, 10);
