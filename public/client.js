@@ -261,8 +261,8 @@ const join = (roomName = "", playersNr) => {
           }
 
           const diff = Math.abs(parseInt(newVal) - parseInt(oldVal));
-          if (diff > 1) {
-            play("j", diff);
+          if (!state.m._.sleeping && diff > 3) {
+            play("j", diff <= 13 ? diff - 3 : 10);
           }
         }
       }
@@ -378,7 +378,7 @@ const play = (sound, time = 1) => {
     g: [1, , 0.06, , 0.5, 0.45, , 0.2, , , , , , , , 0.5, , , 1, , , , , 0.5], // gol
     v: [1, , 0.4, , 0.45, 0.25, , 0.13, , Math.random() * 3, Math.random() * 3, , , , , , , , 1, , , , , 0.3], // vehicle change
     m: [1, , 0.2 * time, , 0.1, 0.6, , , , , , , , , , , , , 1, , , 0.1, , 0.5], // start / end match
-    j: [0, , 0.27, , (time - 3) / 20, 0.3 + Math.random() * 0.2, , 0.12, , , , , , 0.025, , , , , 0.83, , , , , 0.5], // jump
+    j: [0, , 0.27, , time / 20, 0.3 + Math.random() * 0.2, , 0.12, , , , , , 0.025, , , , , 0.83, , , , , 0.5], // jump
   }[sound]);
   a.play();
 };
