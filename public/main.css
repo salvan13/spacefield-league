@@ -213,6 +213,10 @@ a:hover {
   clip-path: polygon(70% 10%, 100% 50%, 70% 90%, 0 100%, 15% 50%, 0 0);
 }
 
+.p[data-v='7']::before {
+  clip-path: polygon(20% 15%, 100% 50%, 20% 85%, 0% 65%, 30% 50%, 0% 35%);
+}
+
 .p::after {
   content: attr(data-name);
   position: absolute;

@@ -8,7 +8,7 @@
 
 **Game Features**
 
-- **seven different vehicles** to play with - each with his own stats
+- **8 different vehicles** to play with - each with his own stats
 - **statistics and votes** for each player on end-match
 - training room
 - custom rooms
