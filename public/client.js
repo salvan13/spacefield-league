@@ -3,7 +3,12 @@ import { V } from "./shared.js";
 
 let socket, state, pingInterval;
 let firstLogin = !localStorage.getItem("cid");
-const controlsPupupText = "Arrows = Move<br>Space = Shot<br>Ctrl + Direction = Move & Stop<br>Enter = Chat";
+const controlsPupupText = `Arrows = <b>Move</b><br>
+  Space = <i>Empower</i><br>
+  Ctrl + Arrows = <b>Move & Stop</b><br>
+  Enter = Chat<br>
+  <br>
+  When <i>empowered</i> touch the ball to <b>shot</b> or press space again to <b>jump</b>`;
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => document.querySelectorAll(s);
 
@@ -285,10 +290,10 @@ const join = (roomName = "", playersNr) => {
           <div class="sh"></div>
         </div>
         <div class="i">
-          <p data-p="rec">energy recovery</p>
           <p data-p="shot">shot power</p>
-          <p data-p="hit">hit</p>
           <p data-p="jump">jump</p>
+          <p data-p="rec">energy recovery</p>
+          <p data-p="hit">hit</p>
         </div>
         <div class="s">
           ${V.map((v, i) => `<a href='#${i}' data-i=${i}>${v.n}</a>`).join("")}

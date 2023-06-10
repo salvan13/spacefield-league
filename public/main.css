@@ -88,6 +88,16 @@ main::before {
   opacity: .5;
 }
 
+b {
+  color: #ff0;
+  font-weight: normal;
+}
+
+i {
+  color: #40cf33;
+  font-style: normal;
+}
+
 main::after {
   content: "\a";
   height: 1%;
@@ -530,7 +540,7 @@ label {
 }
 
 .v .sel {
-  color: #394;
+  color: #40cf33;
 }
 
 .v .i {
