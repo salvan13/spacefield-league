@@ -1,0 +1,36 @@
+{
+  "env": {
+    "es2022": true,
+    "browser": false,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": [
+      "warn",
+      2
+    ],
+    "linebreak-style": [
+      "warn",
+      "unix"
+    ],
+    "quotes": [
+      "warn",
+      "double"
+    ],
+    "semi": [
+      "warn",
+      "always"
+    ],
+    "no-sparse-arrays": "off",
+    "prefer-const": "warn",
+    "max-len": [
+      "warn",
+      140
+    ]
+  }
+}

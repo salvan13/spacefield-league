@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "start:dev": "node --watch index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [
     "js13kgames",
@@ -15,5 +18,8 @@
   "dependencies": {
     "express": "4.18.2",
     "socket.io": "4.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.42.0"
   }
 }
