@@ -36,9 +36,10 @@
 
 **Vehicle Stats**
 
-- **shot recovery:** the time needed to recover the energy required to shoot
+- **energy recovery:** the time needed to recover the energy (needed for shot and jump)
 - **shot power:** the distance covered by the ball when you shoot
-- **hit power:** the distance covered by the ball when you touch it
+- **hit:** the distance covered by the ball when you touch it
+- **jump:** the distance covered by yourself during a jump
 
 **End Match - Player Stats**
 

@@ -234,7 +234,7 @@ const join = (roomName = '', playersNr) => {
   };
 
   const selectVehicle = () => {
-    showPopup('vehicle selection', `<input type="hidden" name="v"></input><div class="v"><div class="p me" data-info=""><div class="sh"></div></div><div class="i"><p data-p="rec">shot recovery</p><p data-p="shot">shot power</p><p data-p="hit">hit power</p></div><div class="s">${V.map((v, i) => `<a href='#${i}' data-i=${i}>${v.n}</a>`).join('')}</div></div>`).then((form) => {
+    showPopup('vehicle selection', `<input type="hidden" name="v"></input><div class="v"><div class="p me" data-info=""><div class="sh"></div></div><div class="i"><p data-p="rec">energy recovery</p><p data-p="shot">shot power</p><p data-p="hit">hit</p><p data-p="jump">jump</p></div><div class="s">${V.map((v, i) => `<a href='#${i}' data-i=${i}>${v.n}</a>`).join('')}</div></div>`).then((form) => {
       const vehicle = form.get('v');
       localStorage.setItem('v', vehicle);
       connect();
@@ -400,6 +400,9 @@ window.addEventListener('keydown', (e) => {
     if (e.code == "Space" && state.p[socket.id].energy == 100 && !state.p[socket.id].powerL) {
       socket.emit('shot');
       play('p');
+    }
+    if (e.code == "Space" && state.p[socket.id].powerL) {
+      socket.emit('jump');
     }
     if (e.code == "KeyT") {
       socket.emit('switch');
