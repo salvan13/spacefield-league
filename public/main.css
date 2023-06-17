@@ -389,12 +389,13 @@ button:hover {
 }
 
 .popup {
+  display: block;
   background-image: linear-gradient(#222, #111);
   border: 0.1vmin #747474 solid;
   position: fixed;
   color: white;
   padding: 1vmin;
-  top: 20vh;
+  top: -100vh;
   left: 20vw;
   width: 60vw;
   z-index: 50;
@@ -402,12 +403,17 @@ button:hover {
   max-height: 70vh;
   overflow: auto;
   transition: all 0.7s ease;
+  opacity: 0;
 }
 
-.popup.h {
-  top: -100vh;
-  box-shadow: initial;
-  opacity: 0;
+.popup[open] {
+  top: 20vh;
+  box-shadow: none;
+  opacity: 1;
+}
+
+.popup::backdrop {
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .popup button {

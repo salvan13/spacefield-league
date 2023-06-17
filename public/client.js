@@ -405,8 +405,8 @@ const showPopup = (text, contents, cancelable) => {
       $(".popup button:nth-of-type(2n)").addEventListener("click", (e) => {
         e.preventDefault();
         popup.innerHTML = "";
-        popup.classList.add("h");
         resolve(null);
+        popup.close();
       });
     }
     const formEl = $(".popup form");
@@ -414,10 +414,12 @@ const showPopup = (text, contents, cancelable) => {
       $(".popup form").addEventListener("submit", (e) => {
         e.preventDefault();
         popup.innerHTML = "";
-        popup.classList.add("h");
         resolve(new FormData(e.target));
+        popup.close();
+
       });
     }
+    popup.showModal();
     const firstInput = $(".popup input, .popup select");
     if (firstInput) {
       firstInput.focus();
