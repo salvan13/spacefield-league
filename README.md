@@ -8,7 +8,7 @@
 
 **Game Features**
 
-- **seven different vehicles** to play with - each with his own stats
+- **8 different vehicles** to play with - each with his own stats
 - **statistics and votes** for each player on end-match
 - training room
 - custom rooms
@@ -20,29 +20,32 @@
 **How To Play**
 
 - Basic controls
-  - move your vehicle with **"arrows (or wasd or zqsd)"**
+  - move your vehicle with **arrows**
   - touch the ball to move it
-  - when you are full of energy (you are bright) press **"space"** to charge the shot
+  - when you are full of energy (you are bright) press **space** to **empower** yourself
+    - when you are **empowered** touch the ball to **shot** or press space again to **jump**
 - Other keys
-  - press **"enter"** to chat, or just click on the input field
-  - press **"t"** to switch team (only before the match is started and the other team is not full)
+  - press **enter** to chat, or just click on the input field
+  - press **t** to switch team (only before the match is started and the other team is not full)
 - Pro tips
-  - "Move & Stop": press **"ctrl (or command) + arrows (or wasd or zqsd)"** to move only by one cell and then stop
+  - "Move & Stop": press **ctrl (or command) + arrows** to move only by one cell and then stop
   - when you hit the ball you become slower
-  - after shot you lose energy, wait to recover it
+  - after shot or jump you lose the energy, wait to recover it
   - try to use the shot also for pass the ball to your teammates
-  - use the "Move & Stop" (ctrl or command + direction) when you have the ball and need to turn direction, or to dribble opponents
-  - try to make team play (play with more friends is much more fun!)
+  - use the "Move & Stop" when you have the ball and need to turn direction, to dribble opponents, or to block enemies
+  - try to make team play
+  - use the vehicle that fits better your game style
 
 **Vehicle Stats**
 
-- **shot recovery:** the time needed to recover the energy required to shoot
+- **energy recovery:** the time needed to recover the energy (needed for shot and jump)
 - **shot power:** the distance covered by the ball when you shoot
-- **hit power:** the distance covered by the ball when you touch it
+- **hit:** the distance covered by the ball when you touch it
+- **jump:** the distance covered by yourself during a jump
 
 **End Match - Player Stats**
 
-- **goal:** number of goal scored
+- **goal:** goals scored
 - **assist:** number of successful pass to teammates with a subsequent goal
 - **pass:** number of successful pass to teammates
 - **recover:** number of recovered balls
