@@ -263,6 +263,10 @@ a:hover {
   mix-blend-mode: difference;
 }
 
+.p:not([data-jumping="0"]) {
+  --player-scale: 2.7;
+}
+
 .ba {
   background-image: radial-gradient(#fff, #aaa);
   transition: all 0.1s ease-in;
