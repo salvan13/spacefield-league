@@ -289,8 +289,7 @@ const join = (roomName = "", playersNr) => {
   const selectVehicle = () => {
     showPopup(
       "vehicle selection",
-      `<input type="hidden" name="v"></input>
-      <div class="v">
+      `<div class="v">
         <div class="p me" data-info="">
           <div class="sh"></div>
         </div>
@@ -301,7 +300,12 @@ const join = (roomName = "", playersNr) => {
           <p data-p="hit">hit</p>
         </div>
         <div class="s">
-          ${V.map((v, i) => `<a href='#${i}' data-i=${i}>${v.n}</a>`).join("")}
+          ${V.map((v, i) => `
+            <div>
+              <div><input id="v-${i}-selection" type="radio" name="v" value="${i}"></input></div>
+              <label for="v-${i}-selection">${v.n}</label>
+            </div>
+          `).join("")}
         </div>
       </div>`
     ).then((form) => {
@@ -309,20 +313,17 @@ const join = (roomName = "", playersNr) => {
       localStorage.setItem("v", vehicle);
       connect();
     });
-    $$(".v a").forEach((el) => {
-      el.addEventListener("click", (e) => {
-        e.preventDefault();
-        const index = e.target.dataset.i;
+    $$(".v input[name='v']").forEach((el) => {
+      el.addEventListener("change", (e) => {
+        const index = e.target.value;
         const p = $(".v .p");
-        if (p.dataset.v == e.target.dataset.i) {
+        if (p.dataset.v == index) {
           return;
         }
         play("v");
-        $$(".sel").forEach((sel) => sel.classList.remove("sel"));
-        e.target.classList.add("sel");
-        $("[name=\"v\"]").value = p.dataset.v = index;
+        p.dataset.v = index;
         p.dataset.name = V[index].n;
-        $$(".v p").forEach((el) => {
+        $$(".v .i p").forEach((el) => {
           el.style.setProperty("--val", V[index][el.dataset.p]);
         });
         for (let i = 0; i < 7; i++) {
@@ -331,8 +332,9 @@ const join = (roomName = "", playersNr) => {
         setTimeout(() => p.dataset.info = "", 1500);
       });
       const vehicle = localStorage.getItem("v") || 0;
-      if (vehicle == el.dataset.i) {
+      if (vehicle == el.value) {
         el.click();
+        el.focus();
       }
     });
   };
