@@ -58,8 +58,10 @@ body.loading::after {
 }
 
 main {
-  height: 90vmin;
-  width: 90vmin;
+  --field-w: 90vmin;
+  --field-h: 90vmin;
+  width: var(--field-w);
+  height: var(--field-h);
   margin: 5vmin auto;
   position: relative;
   background-size: 1% 1%;
@@ -113,10 +115,15 @@ main::after {
 
 .track, .p, .ba, .bl {
   position: absolute;
-  top: calc(var(--py) * 1%);
-  left: calc(var(--px) * 1%);
+  top: 0;
+  left: 0;
   height: 1%;
   width: 1%;
+  --block-w: var(--field-w) / 100;
+  --block-h: var(--field-h) / 100;
+  --tX: calc(var(--px) * var(--block-w));
+  --tY: calc(var(--py) * var(--block-h));
+  transform: translateX(var(--tX)) translateY(var(--tY));
 }
 
 section {
@@ -259,7 +266,7 @@ a:hover {
   box-shadow: 0 0 1rem 0.4rem var(--color-tB);
 }
 
-.p.me[data-team][data-power-l='true'] .sh {
+.p.me[data-team][data-empowered='true'] .sh {
   box-shadow: 0 0 0.1rem 0.1rem white;
   mix-blend-mode: difference;
 }
@@ -269,12 +276,22 @@ a:hover {
 }
 
 .ba {
-  background-image: radial-gradient(#fff, #aaa);
   transition: all 0.1s ease-in;
   z-index: 2;
+}
+
+.ba::before {
+  content: "\a";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(#fff, #aaa);
   box-shadow: 0 0 1rem 0.05rem white;
   border-radius: 50%;
-  transform: scale(0.9);
+  transform: scale(var(--ball-scale, 0.9));
+  transition: transform 0.05s ease-in;
 }
 
 .t {
@@ -510,7 +527,12 @@ label {
   color: white;
 }
 
-.track {
+.track > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   opacity: 0;
   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
 }
@@ -523,11 +545,11 @@ label {
   color: var(--color-tB);
 }
 
-.p[data-team='a']::before, .track.a {
+.p[data-team='a']::before, .track.a > div {
   background-color: var(--color-tA);
 }
 
-.p[data-team='b']::before, .track.b {
+.p[data-team='b']::before, .track.b > div {
   background-color: var(--color-tB);
 }
 

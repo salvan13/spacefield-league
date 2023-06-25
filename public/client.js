@@ -234,30 +234,29 @@ const join = (roomName = "", playersNr) => {
       }
       if (section == "ba") {
         const diff = Math.abs(parseInt(newVal) - parseInt(oldVal));
-        el.animate([
-          { transform: "scale(1)" },
-          { transform: `scale(${diff <= 4 ? 1.3 : 2})` },
-          { transform: "scale(1)" }
-        ], 100);
+        el.style.setProperty("--ball-scale", diff <= 4 ? "1.2" : "1.7");
+        setTimeout(() => el.style.removeProperty("--ball-scale"), 50);
         play("b" + (diff <= 4 ? "" : "l"));
       }
       if (section == "p") {
         if (attr == "px" || attr == "py") {
           if (state[section][sprite].cid == cid) {
-            const t = document.createElement("div");
-            t.classList.add("track");
-            t.classList.add(state[section][sprite].team);
-            t.style.setProperty("--px", state[section][sprite].px);
-            t.style.setProperty("--py", state[section][sprite].py);
-            main.appendChild(t);
-            t.animate([
+            const track = document.createElement("div");
+            track.classList.add("track");
+            track.classList.add(state[section][sprite].team);
+            track.style.setProperty("--px", state[section][sprite].px);
+            track.style.setProperty("--py", state[section][sprite].py);
+            const trackBody = document.createElement("div");
+            track.appendChild(trackBody);
+            main.appendChild(track);
+            trackBody.animate([
               { opacity: 0.5, transform: "scale(1)" },
               { opacity: 0.5, transform: "scale(0.5)" },
               { opacity: 0, transform: "scale(0.1)" }
             ], {
               delay: 200,
               duration: 1500
-            }).onfinish = () => t.remove();
+            }).onfinish = () => track.remove();
           }
 
           const diff = Math.abs(parseInt(newVal) - parseInt(oldVal));
@@ -491,11 +490,11 @@ window.addEventListener("keydown", (e) => {
       socket.emit("move", { dir, lock: lockDirection });
       document.activeElement.blur();
     }
-    if (e.code == "Space" && state.p[socket.id].energy == 100 && !state.p[socket.id].powerL) {
-      socket.emit("shot");
+    if (e.code == "Space" && state.p[socket.id].energy == 100 && !state.p[socket.id].empowered) {
+      socket.emit("empower");
       play("p");
     }
-    if (e.code == "Space" && state.p[socket.id].powerL) {
+    if (e.code == "Space" && state.p[socket.id].empowered) {
       socket.emit("jump");
     }
     if (e.code == "KeyT") {
