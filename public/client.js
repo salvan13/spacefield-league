@@ -207,7 +207,9 @@ const join = (roomName = "", playersNr) => {
       }
       if (section == "p") {
         if (attr == "dir" && newVal) {
-          el.style.setProperty("--player-rotate", ({ u: -90, d: 90, l: 180 }[newVal] || 0) + "deg");
+          const prevRotation = parseInt(el.style.getPropertyValue("--player-rotate"), 10) || 0;
+          const dist = (90 * ["r", "d", "l", "u"].indexOf(newVal)) - (prevRotation % 360);
+          el.style.setProperty("--player-rotate", `${prevRotation + (Math.abs(dist) === 270 ? Math.sign(dist) * -90 : dist)}deg`);
         }
       }
       if (section == "m") {
