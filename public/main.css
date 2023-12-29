@@ -296,7 +296,11 @@ a:hover {
 
 .t {
   position: absolute;
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 1rem;
   width: 35vmin;
   color: var(--color-tA);
   left: 0;
@@ -306,10 +310,13 @@ a:hover {
 
 .t::before {
   content: attr(data-name);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .t::after {
-  content: " - " attr(data-score);
+  content: attr(data-score);
 }
 
 .t + .t {
@@ -317,14 +324,18 @@ a:hover {
   left: initial;
   right: 0;
   text-align: right;
+  justify-content: flex-end;
 }
 
 .t + .t::after {
   content: attr(data-name);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .t + .t::before {
-  content: attr(data-score) " - ";
+  content: attr(data-score);
 }
 
 .m {
