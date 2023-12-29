@@ -510,6 +510,60 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
+(function touchevents() {
+  let dir = null;
+  let lastDir = null;
+  let currentPoint = null;
+
+  window.addEventListener("touchstart", (e) => {
+    const touches = e.changedTouches;
+    currentPoint = {
+      x: touches[0].pageX,
+      y: touches[0].pageY
+    };
+  });
+
+  window.addEventListener("touchend", () => {
+    currentPoint = null;
+
+    if (dir) {
+      socket.emit("move", { dir, lock: true });
+      lastDir = null;
+      dir = null;
+    } else {
+      if (state.p[socket.id].energy == 100 && !state.p[socket.id].empowered) {
+        socket.emit("empower");
+        play("p");
+      }
+      if (state.p[socket.id].empowered) {
+        socket.emit("jump");
+      }
+    }
+  });
+
+  window.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    if (currentPoint) {
+      const touches = e.changedTouches;
+      const xDiff = touches[0].pageX - currentPoint.x;
+      const yDiff = touches[0].pageY - currentPoint.y;
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        dir = xDiff > 0 ? "r" : "l";
+      } else {
+        dir = yDiff > 0 ? "d" : "u";
+      }
+      if (lastDir != dir) {
+        socket.emit("move", { dir, lock: true });
+        lastDir = dir;
+        currentPoint = {
+          x: touches[0].pageX,
+          y: touches[0].pageY
+        };
+      }
+    }
+  });
+})();
+
 const cid = localStorage.getItem("cid") || Math.ceil(Math.random() * 10e15);
 localStorage.setItem("cid", cid);
 login.querySelector("input").value = localStorage.getItem("name");
